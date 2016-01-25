@@ -1,0 +1,27 @@
+doctype html
+html
+	head
+		title= appTitle
+		link(rel="stylesheet" type="text/css" href="/css/basic.css?20150528")
+		link(rel="stylesheet" type="text/css" href="/css/nanoscroller.css?20150528")
+		link(rel="stylesheet" type="text/css" href="/css/jsSite.css?20150528")
+		script(type="text/javascript" src="/js/lib/jquery-1.8.3.min.js")
+		block header
+	body
+		a(href="#" class="btnTop fr" id="TopForPaging" style="position:fixed; right:60px; bottom:47px; display: none; z-index: 49;")
+			span TOP
+		ul.skipnav
+			li
+				a(href="#nav" accesskey="1") Menu
+			li
+				a(href="#container" accesskey="2") Contents
+		div#wrap.nav_active
+			div.inner_wrap
+				h1
+					span.blind 
+						| JS SITE WLC
+				#container
+					block content
+		block footer			
+			footer
+				| simple site version 001

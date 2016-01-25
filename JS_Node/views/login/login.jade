@@ -1,0 +1,42 @@
+doctype html
+html
+	head
+		title= appTitle
+		link(rel="stylesheet" type="text/css" href="/css/basic.css?20150528")
+		link(rel="stylesheet" type="text/css" href="/css/nanoscroller.css?20150528")
+		link(rel="stylesheet" type="text/css" href="/css/jsSite.css?20150528")
+		script(type="text/javascript" src="/js/lib/jquery-1.8.3.min.js")
+		script(type="text/javascript" src="/js/login/login.js")
+
+	body
+		div.login_page
+			div.header
+				h1
+					a(href="#")
+						img(src="/img/cmm/logo_node.png" alt="JS LOGO")
+			div.login_main
+				block content
+					div.user_info
+						p.tit
+							img(src="/img/login/img_login_title.png" alt="JS LOGO")
+						ul.cont
+							li
+								<!-- input(input type="text" id="lgnId" name="lgnId" placeholder="User ID" value="jungsang.you@js.com") -->
+								input(input type="text" id="lgnId" name="everyauth.password.loginFormFiledName" placeholder="User ID" value="jungsang.you@js.com") 
+							li#password-ill(style="display:none")
+							li#password-real
+								<!-- input#password(pos_id="pass" name="password"  type="password" placeholder="Password" onKeypress="hitEnterKey(event)" value="1234") -->
+								input#password(pos_id="pass" name="everyauth.password.passwordFormFileName"  type="password" placeholder="Password" onKeypress="hitEnterKey(event)" value="1234") 
+							li.none
+								a#loginBtn.btn_login Login
+								a#loginBtn.btn_login(href='/auth/google' style="margin-top:1px;") Sign in with Google 
+							li.saveID
+								label(for="idSave") Remember ID
+								input(id="idSave" type="checkbox" name="idSave")
+								div.fr
+									div.select_innr(data-name="sector" style="width:120px;")
+										div.selected.layer_trigger
+											a(href="#")
+												em#selectLang
+										div#langList.select_option.layer_cong(style="max-height: 161px; overflow-y: auto; overflow-x: hidden;")
+											ul#inLang
