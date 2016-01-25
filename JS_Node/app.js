@@ -18,23 +18,31 @@ var session = require('express-session'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override');
 
-//everyAuth With google 연계 
+//everyAuth With google �뿰怨� 
 everyauth.google
 .appId("900717034966-rk27187rinune8jgdjq11gab9khor9gp.apps.googleusercontent.com")
 .appSecret("ldlHWdm23ScE2-P8gN3WxbzU")
 .scope('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email')
 .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
 	  try{
-		  //집에서 하기로 !!
-		  var promise = this.Promise();
 		  console.log(fbUserMetadata);
+		  //세션 등록하기
+		  var usersInfo = {
+				  loginId : fbUserMetadata.email
+				  ,userName : fbUserMetadata.name
+				  ,admin : false
+				  ,age : null
+				  ,orgName : null
+		  }
+		  session.user = usersInfo;
+		  var promise = this.Promise();
 	  	  promise.fulfill(fbUserMetadata);
 	  	  return promise;
 	 }catch(err){
 		  console.log(err);
 	 }
 })
-.redirectPath('/login');
+.redirectPath('/home/main');
 everyauth.everymodule.handleLogout(routes.login.logout);
 everyauth.everymodule.findUserById(function(user, callback){
 	callback(user);
@@ -61,7 +69,7 @@ app.use(methodOverride());
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//쿠키 세션 설정 
+//荑좏궎 �꽭�뀡 �꽕�젙 
 app.use(cookieParser('3CCC4ACD-6ED1-4844-9217-82131BDCB239'));
 app.use(session({secret: '2C4477FA-D649-4D44-9535-46E296EF984F'}));
 app.use(everyauth.middleware());
@@ -71,7 +79,7 @@ app.use(function(req, res, next){
 	next();
 });
 
-//세션 권한 설정 
+//�꽭�뀡 沅뚰븳 �꽕�젙 
 var auth_admin = function(req, res, next) {
 	if(req.session && req.session.admin) return next();
 	else return res.redirect('login');
@@ -82,7 +90,7 @@ var auth_user = function(req, res, next) {
 	else return res.redirect('login');
 }
 
-//세션 체크
+//�꽭�뀡 泥댄겕
 var chkSession = function(req, res, next) {
 	if(req.session) return next();
 	else return res.redirect('login');
@@ -106,16 +114,16 @@ app.get('/', function(req, res) {
 	res.redirect('login');
 });
 
-//로그인 화면 
+//濡쒓렇�씤 �솕硫� 
 app.get('/admin', auth_admin, routes.admin);
 app.get('/login', routes.login.login);
 app.get('/logout', routes.login.logout);
 
-//메인홈 
+//硫붿씤�솃 
 app.get('/home/main', auth_user, routes.home.main);
 
 // REST API routes
-//사용자 정보 조회 
+//�궗�슜�옄 �젙蹂� 議고쉶 
 app.get('/api/authenticate/', routes.login.authenticate);
 app.post('/api/addUser/', auth_admin, routes.user.add);
 
