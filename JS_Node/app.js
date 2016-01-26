@@ -3,13 +3,16 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
 //  namespace = require('express-namespace'),
-  mongoskin = require('mongoskin'),
+//  mongoskin = require('mongoskin'),
+  mongoose = require('mongoose'),
+  models = require('./models'),
   dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/jsy',
-  db = mongoskin.db(dbUrl, {safe: true}),
-  collections = {
-	users: db.collection('users'),
-  };
-var everyauth = require('everyauth');
+  db = mongoose.connect(dbUrl, {safe: true}),
+  everyauth = require('everyauth');
+//  collections = {
+//	users: db.collection('users'),
+//  };
+
 var global = {};
 var session = require('express-session'),
 	logger = require('morgan'),
@@ -53,11 +56,18 @@ var app = express();
 app.locals.appTitle = 'jsNode';
 
 //app.use(app.router);
+//app.use(function(req, res, next) {
+//	if (! collections.users) return next(new Error("No collections users."))
+//	req.collections = collections;
+//	return next();
+//});
+//mongoos 사용시 model 비교
 app.use(function(req, res, next) {
-	if (! collections.users) return next(new Error("No collections users."))
-	req.collections = collections;
+	if (! models.User) return next(new Error("No models."))
+	req.models = models;
 	return next();
 });
+
 
 app.set('port',  process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -81,19 +91,19 @@ app.use(function(req, res, next){
 
 //�꽭�뀡 沅뚰븳 �꽕�젙 
 var auth_admin = function(req, res, next) {
-	if(req.session && req.session.admin) return next();
-	else return res.redirect('login');
+	if(req.session && req.session.user && req.session.admin) return next();
+	else return res.redirect('/login');
 }
 
 var auth_user = function(req, res, next) {
-	if(req.session) return next();
-	else return res.redirect('login');
+	if(req.session && req.session.user) return next();
+	else return res.redirect('/login');
 }
 
 //�꽭�뀡 泥댄겕
 var chkSession = function(req, res, next) {
 	if(req.session) return next();
-	else return res.redirect('login');
+	else return res.redirect('/login');
 } 
 
 

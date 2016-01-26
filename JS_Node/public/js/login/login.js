@@ -5,7 +5,7 @@ $(document).ready(function(){
 		var password = $("input[pos_id]").val();
 		
 		if(lgnId == null || password == null || lgnId == '' || password == ''){
-			alert("濡쒓렇�씤ID �삉�뒗 Password瑜� �벑濡� �빐 二쇱꽭�슂 ");
+			alert("ID 또는 PASSWORD를 입력해 주세요 ");
 			return;
 		}
 		
@@ -16,9 +16,13 @@ $(document).ready(function(){
 		    success: function(data, status, xhr) {
 		    	console.log(data);
 		    	if(data != null && data != ''){
-		    		location.replace('/home/main');
+		    		if(data.admin){
+		    			location.replace('/admin');
+		    		}else{
+		    			location.replace('/home/main');
+		    		}
 		    	}else{
-		    		alert("濡쒓렇�씤�떎�뙣");
+		    		alert("ID 또는 PASSWORD를 확인해주세요");
 		    	}
 		    }
 		 });

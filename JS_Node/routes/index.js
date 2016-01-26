@@ -13,6 +13,11 @@ exports.index = function(req, res, next) {
  * GET admin home page.
  */
 exports.admin = function(req, res, next) {
-	res.render('admin');
+	var userData = {
+			loginId : req.session.user.loginId
+			,userName : req.session.user.userName
+	}
+	console.log(userData);
+	res.render('admin', {user: userData});
 };
 

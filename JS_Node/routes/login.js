@@ -28,7 +28,7 @@ exports.authenticate = function(req, res, next) {
 	}
 	var loginId = req.query.loginId;
 	var password = req.query.password
-	req.collections.users.findOne({loginId: loginId, password : password}, function(error, result) {
+	req.models.User.findOne({loginId: loginId, password : password}, function(error, result) {
 	    if (error) return next(error);
 	    console.info(result);
 	    if(result != null){

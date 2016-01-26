@@ -22,7 +22,7 @@ $(document).ready(function(){
 		    type: 'POST',
 		    data : param,
 		    success: function(data, status, xhr) {
-		    	if(data[0].loginId != '' && data[0].loginId != null){
+		    	if(data.loginId != '' && data.loginId != null){
 		    		alert('add success!');
 		    	}
 		    }
