@@ -1,0 +1,33 @@
+div
+	h1 Hello admin User.
+	h1 You can regist another User.
+	br
+	div
+		|* ID 
+		input.input_type1(checkOption type="text" id="loginId" name="loginId"  style="padding-left:5px;" value="admin02@js.com")
+		br 
+		br
+		|* PW 
+		input.input_type1(checkOption type="text" id="password" name="password" style="padding-left:5px;" value="1234")
+		br
+		br
+		|* Name 
+		input.input_type1(checkOption type="text" id="userName" name="userName" style="padding-left:5px;" value="admin02")
+		br
+		br
+		|* Age 
+		input.input_type1(checkOption type="text" id="age" name="age" style="padding-left:5px;" value="2")
+		br
+		br
+		|* Comp 
+		input.input_type1(checkOption type="text" id="orgName" name="orgName" style="padding-left:5px;" value="js Comp")
+		br 
+		br
+		|* Admin 
+		select(id="adminChk" style="margin-left:6px;")
+			option(value="true") true
+			option(value="true") true
+			option(value="false") false
+		a(id="submitBt")
+			button(id="submitBt" type="submit" style="margin-left:100px; height:19px; vertical-align:middle;") AddUser
+

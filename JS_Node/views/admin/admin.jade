@@ -1,0 +1,16 @@
+extends ../layout
+
+block menu
+	li.menu01.on
+		a(href="#" menuUrl="/admin/add/")
+			em
+				span Add
+		em.shadow
+	li.menu02
+		a
+			em
+				span List
+		em.shadow
+block header
+	script(type="text/javascript" src="/js/admin/admin.js")
+block content
