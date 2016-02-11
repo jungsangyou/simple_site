@@ -1,6 +1,4 @@
 
-
-
 /*
  * GET login page.
  */

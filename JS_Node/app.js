@@ -124,12 +124,13 @@ app.get('/', function(req, res) {
 	res.redirect('login');
 });
 
-//濡쒓렇�씤 �솕硫� 
-app.get('/admin', auth_admin, routes.admin);
+//화면 넘김
+app.get('/admin', auth_admin, routes.admin.admin);
+app.get('/admin/add', auth_admin, routes.admin.add);
 app.get('/login', routes.login.login);
 app.get('/logout', routes.login.logout);
 
-//硫붿씤�솃 
+//메인화면
 app.get('/home/main', auth_user, routes.home.main);
 
 // REST API routes

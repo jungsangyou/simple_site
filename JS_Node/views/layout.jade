@@ -6,6 +6,7 @@ html
 		link(rel="stylesheet" type="text/css" href="/css/nanoscroller.css?20150528")
 		link(rel="stylesheet" type="text/css" href="/css/common.css?20150528")
 		script(type="text/javascript" src="/js/lib/jquery-1.8.3.min.js")
+		script(type="text/javascript" src="/js/cmm/menu.js")
 		block header
 	body
 		a(href="#" class="btnTop fr" id="TopForPaging" style="position:fixed; right:60px; bottom:47px; display: none; z-index: 49;")
@@ -24,7 +25,7 @@ html
 					include header.jade
 				include menu.jade
 				#container
-					.content
+					#content.content
 						block content
 		block footer			
 			footer

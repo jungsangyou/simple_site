@@ -116,7 +116,33 @@ nav.lnb_wrap ul.menu > li:first-child a {border-top:1px solid #e9ebf2; height:48
 nav.lnb_wrap ul.menu > li em.shadow {display:none;}
 nav.lnb_wrap ul.menu > li.on em.shadow {display:block;position:absolute;top:49px;left:-10px;width:211px;height:5px;background:url(/img/menu/bg_menu.png) 0 0 no-repeat;z-index:99;}
 
+nav.lnb_wrap ul.menu > li.menu01 {border-left:10px solid #454964;}
+nav.lnb_wrap ul.menu > li.menu02 {border-left:10px solid #97559d;}
+nav.lnb_wrap ul.menu > li.menu03 {border-left:10px solid #639439;}
+nav.lnb_wrap ul.menu > li.menu04 {border-left:10px solid #4764b0;}
+nav.lnb_wrap ul.menu > li.menu05 {border-left:10px solid #ff7211;}
 
+nav.lnb_wrap ul.menu > li.menu01.on {background-color:#454964;}
+nav.lnb_wrap ul.menu > li.menu02.on {background-color:#97559d;}
+nav.lnb_wrap ul.menu > li.menu03.on {background-color:#639439;}
+nav.lnb_wrap ul.menu > li.menu04.on {background-color:#4764b0;}
+nav.lnb_wrap ul.menu > li.menu05.on {background-color:#ff7211;}
+nav.lnb_wrap ul.menu > li.menu06.on {background-color:#888e97;}
+nav.lnb_wrap ul.menu > li.menu07.on {background-color:#aaafb8;}
+nav.lnb_wrap ul.menu > li > a {display:block; color:#454964; padding:0 25px; height:49px; border-bottom:1px solid #e9ebf2; line-height:0; font-size:0; word-break:break-all;}
+nav.lnb_wrap ul.menu > li.on {border-bottom:none; }
+nav.lnb_wrap ul.menu > li.on > a {color:#fff;}
+nav.lnb_wrap ul.menu > li > a:after {display:inline-block; content:""; height:100%; vertical-align:middle;}
+nav.lnb_wrap ul.menu > li > a em {display:inline-block; vertical-align:middle;}
+nav.lnb_wrap ul.menu > li > a em span {display:inline-block; display:-webkit-box; overflow:hidden; max-height:36px; font-size:16px; line-height:18px; vertical-align:middle; word-break:break-all; -webkit-line-clamp:2; -webkit-box-orient:vertical;}
+
+nav.lnb_wrap ul.menu > li .submenu {background-color:#f0f0f2;padding:12px 9px 10px 22px; margin:-1px 0 0 -10px; border-left:10px solid #454964;}
+nav.lnb_wrap ul.menu > li .submenu > ul {}
+nav.lnb_wrap ul.menu > li .submenu > ul > li {padding-left:12px;height:26px;}
+nav.lnb_wrap ul.menu > li .submenu > ul > li a {color:#9298a1; font-size:13px; line-height:26px;}
+nav.lnb_wrap ul.menu > li .submenu > ul > li a:hover {color:#444;}
+nav.lnb_wrap ul.menu > li .submenu > ul > li.on a {color:#ff7211; font-weight:bold; height:26px; line-height:26px; font-size:13px;} /* sooa */
+nav.lnb_wrap ul.menu > li .submenu > ul.type5 > li.on a {font-weight:bold;color:#ff7211; line-height:26px;}
 
 
 
