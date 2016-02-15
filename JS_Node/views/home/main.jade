@@ -1,4 +1,20 @@
 extends ../layout
+block header
+	script.
+		var socket = io.connect('http://localhost:3000');
+		socket.on('receive', function (message) {
+			console.log('received %s', message);
+			document.querySelector('.received-message').innerText = message;
+		});
+		var send = function(input) {
+			console.log(input.value)
+			var value = input.value;
+			console.log('sending %s to server', value);
+			socket.emit('messageChange', {message: value});
+		}
 block content
-	h1 로그인: #{user.loginId}
-	h1 이름: #{user.userName}
+	h1= title
+	p Welcome to
+		span.received-message aa
+	input(type='text', class='message', placeholder='what is on your mind?', onkeyup='send(this)')
+	

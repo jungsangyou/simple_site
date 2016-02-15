@@ -33,11 +33,12 @@ everyauth.google
 		  var usersInfo = {
 				  loginId : fbUserMetadata.email
 				  ,userName : fbUserMetadata.name
-				  ,admin : false
+				  ,admin : true
 				  ,age : null
 				  ,orgName : null
 		  }
 		  session.user = usersInfo;
+		  session.admin = true;
 		  var promise = this.Promise();
 	  	  promise.fulfill(fbUserMetadata);
 	  	  return promise;
@@ -55,12 +56,6 @@ everyauth.everymodule.findUserById(function(user, callback){
 var app = express();
 app.locals.appTitle = 'jsNode';
 
-//app.use(app.router);
-//app.use(function(req, res, next) {
-//	if (! collections.users) return next(new Error("No collections users."))
-//	req.collections = collections;
-//	return next();
-//});
 //mongoos 사용시 model 비교
 app.use(function(req, res, next) {
 	if (! models.User) return next(new Error("No models."))
@@ -91,6 +86,7 @@ app.use(function(req, res, next){
 
 //�꽭�뀡 沅뚰븳 �꽕�젙 
 var auth_admin = function(req, res, next) {
+	console.log(req.session);
 	if(req.session && req.session.user && req.session.admin) return next();
 	else return res.redirect('/login');
 }
@@ -111,13 +107,6 @@ var chkSession = function(req, res, next) {
 if ('development' == app.get('env')) {
 	app.use(errorHandler());
 }
-
-//setting contextPath
-//app.namespace('/jsy', function() {
-//    app.get('/', function (req, res) {
-//    	res.send(404);
-//    });
-//});
 
 // Pages and routes
 app.get('/', function(req, res) {
@@ -144,6 +133,14 @@ app.all('*', function(req, res) {
 
 
 var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+io.sockets.on('connection', function(socket){
+	socket.on('messageChange', function(data){
+		console.log(data);
+		socket.emit('receive', data.message.split('').reverse().join(''));
+	});
+});
+
 var boot = function () {
 	server.listen(app.get('port'), function(){
 		console.info('Express server listening on port ' + app.get('port'));
