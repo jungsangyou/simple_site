@@ -14,8 +14,6 @@ exports.add = function(req, res, next) {
 	    	});
 	    	
 	    }
-	    console.info(result);
-	    console.info('info', info);
 	    req.models.User.create(info, function(error, addResponse) {
     	    if (error) return next(error);
     	    console.info(addResponse);

@@ -13,7 +13,7 @@ var express = require('express'),
 //	users: db.collection('users'),
 //  };
 
-var global = {};
+var global = {count : 1};
 var session = require('express-session'),
 	logger = require('morgan'),
 	errorHandler = require('errorhandler'),
@@ -134,10 +134,13 @@ app.all('*', function(req, res) {
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
+io.set('close timeout', 600);
+io.set('heartbeat timeout', 600);
 io.sockets.on('connection', function(socket){
-	socket.on('messageChange', function(data){
+	console.log(socket);
+	socket.on('sendMessage', function(data){
 		console.log(data);
-		socket.emit('receive', data.message.split('').reverse().join(''));
+		io.sockets.emit('receive', data);
 	});
 });
 

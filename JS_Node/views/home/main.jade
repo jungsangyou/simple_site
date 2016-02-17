@@ -1,20 +1,12 @@
 extends ../layout
 block header
+	script(type="text/javascript" src="/js/chat/chat.js")
 	script.
-		var socket = io.connect('http://localhost:3000');
-		socket.on('receive', function (message) {
-			console.log('received %s', message);
-			document.querySelector('.received-message').innerText = message;
-		});
-		var send = function(input) {
-			console.log(input.value)
-			var value = input.value;
-			console.log('sending %s to server', value);
-			socket.emit('messageChange', {message: value});
-		}
+		var loginId = "#{user.loginId}";
 block content
-	h1= title
-	p Welcome to
-		span.received-message aa
-	input(type='text', class='message', placeholder='what is on your mind?', onkeyup='send(this)')
+	div.chat
+		div.chatList
+			ul#chatList
+		textarea
+		div#send.btn SEND
 	
